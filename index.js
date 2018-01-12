@@ -15,6 +15,7 @@
  */
 const express = require('express');
 const OAuth2 = require('oauth').OAuth2;
+const morgan = require('morgan');
 require('dotenv').config();
 
 // Place these values in .env for local environments.
@@ -78,6 +79,10 @@ function authorize(req, res) {
 }
 
 const app = express();
+
+// Log all requests in the usual NCSA combined format.
+app.use(morgan('combined'));
 app.get('/start', (req, res) => start(req, res));
 app.get('/authorize', (req, res) => authorize(req, res));
+console.info('Starting freckle_auth server on port ' + port + '.');
 app.listen(port);
