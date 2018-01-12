@@ -10,3 +10,10 @@ while adding the bonus of keeping your application keys secure on your server.
 1. `yarn install`
 1. `cp example.env .env # Edit .env, or inject environment variables another way.`
 1. `node index.js`
+
+## After-auth API requests
+
+Since CORS headers are not available on any API request, even after OAuth,
+consider using something like
+[cors-anywhere](https://github.com/Rob--W/cors-anywhere) to proxy those
+requests.
