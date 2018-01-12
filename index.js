@@ -22,6 +22,7 @@ require('dotenv').config();
 let consumerKey = process.env.FRECKLE_CONSUMER_KEY || exit('FRECKLE_CONSUMER_KEY is not defined.');
 let consumerSecret = process.env.FRECKLE_CONSUMER_SECRET || exit('FRECKLE_CONSUMER_SECRET is not defined.');
 let redirectUri = process.env.FRECKLE_REDIRECT_URI || exit('FRECKLE_REDIRECT_URI is not defined.');
+let host = process.env.HOST || 'localhost';
 let port = process.env.PORT || 80;
 let corsOrigin = process.env.CORS_ORIGIN || exit('CORS_ORIGIN is not defined.');
 
@@ -84,5 +85,5 @@ const app = express();
 app.use(morgan('combined'));
 app.get('/start', (req, res) => start(req, res));
 app.get('/authorize', (req, res) => authorize(req, res));
-console.info('Starting freckle_auth server on port ' + port + '.');
-app.listen(port);
+console.info('Starting freckle_auth server on http://' + host + ':' + port + '.');
+app.listen(port, host);
